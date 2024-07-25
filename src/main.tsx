@@ -1,10 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import "./index.css";
+import { createRoot } from "react-dom/client";
+import { Breakpoint, BreakpointProvider } from "react-socks";
+import { LargeViewPort } from "./components/viewPort.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const container = document.getElementById("root") as HTMLElement;
+const root = createRoot(container);
+
+root.render(
+  <BreakpointProvider>
+    <React.StrictMode>
+      <Breakpoint medium up>
+        <LargeViewPort />
+      </Breakpoint>
+      <Breakpoint small down></Breakpoint>
+    </React.StrictMode>
+  </BreakpointProvider>
+);
